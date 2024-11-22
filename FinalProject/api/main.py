@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .routers import index as indexRoute
 from .models import model_loader
 from .dependencies.config import conf
-from .routers import guest_order, menu, feedback, promotion
+from .routers import guest_order, menu, feedback, promotion, customers
 
 app = FastAPI()
 
@@ -26,6 +26,7 @@ app.include_router(guest_order.router)
 app.include_router(menu.router)
 app.include_router(feedback.router)
 app.include_router(promotion.router)
+app.include_router(customers.router)
 
 if __name__ == "__main__":
     uvicorn.run(app, host=conf.app_host, port=conf.app_port)
