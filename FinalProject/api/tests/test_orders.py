@@ -1,17 +1,18 @@
+import pytest
 from fastapi.testclient import TestClient
 from ..controllers import orders as controller
 from ..main import app
-import pytest
 from ..models import orders as model
+
+# Import the pytest-mock plugin
+pytest_plugins = ['pytest_mock']
 
 # Create a test client for the app
 client = TestClient(app)
 
-
 @pytest.fixture
 def db_session(mocker):
     return mocker.Mock()
-
 
 def test_create_order(db_session):
     # Create a sample order

@@ -5,6 +5,7 @@ from .routers import index as indexRoute
 from .models import model_loader
 from .dependencies.config import conf
 from .routers import guest_order, menu, feedback, promotion, customers, payments, resources
+from .dependencies.populate_data import populate_data
 
 app = FastAPI()
 
@@ -33,4 +34,6 @@ app.include_router(payments.router)
 app.include_router(resources.router)
 
 if __name__ == "__main__":
+    populate_data()
+    print("Data population called")
     uvicorn.run(app, host=conf.app_host, port=conf.app_port)
